@@ -1,4 +1,4 @@
-# auto_shutdown_ec2_instances
+# Auto Shutdown EC2 instances.
 Automatically Stopping EC2 Instances with a tag Using Lambda and CloudWatch
 
 ## Step 1: Create an IAM rule
