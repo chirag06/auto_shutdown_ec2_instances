@@ -4,11 +4,12 @@ Automatically Stopping EC2 Instances with a tag Using Lambda and CloudWatch
 ## Step 1: Create an IAM rule
 Create a role that can access EC2 instances from the Lambda function. Follow the steps below 
 1) Go to IAM dashboard.
-2) Under the access managment click on "Roles"
-3) Click on Create Role and select Lambda in "Choose the service that will use this role"
-4) Click "Next: Permissions" button
-5) Select "AmazonEC2FullAccess" policy from the list and click "Next"
-6) Give a name to the role like "LambdaFullAccessEC2" and create the role.
+2) Under the access managment click on "Roles".
+3) Click on Create Role and select Lambda in "Choose a use case".
+4) Click "Next: Permissions" button.
+5) Add Tags is an optional step and one can choose to skip this. 
+6) Select "AmazonEC2FullAccess" policy from the list and click "Next".
+7) Give a name to the role like "LambdaFullAccessEC2" and create the role.
 
 ## Step 2: Create Lambda functions that stops your EC2 instances 
 1) In the Lambda console, choose Create function.
@@ -16,7 +17,6 @@ Create a role that can access EC2 instances from the Lambda function. Follow the
 3) Under Basic information, add the following:
          Function name: StopEC2Instances
          For Runtime, choose Python 3.7.
-         Under Permissions, expand Choose or create an execution role.
          Under Execution role, choose Use an existing role.
          Under Existing role, choose the IAM role that you created("LambdaFullAccessEC2") .
 4. Choose Create function.
@@ -31,7 +31,7 @@ Create a role that can access EC2 instances from the Lambda function. Follow the
 4) Under Event Source, choose Schedule.
 5) Do either of the following:
 For fixed rate of, enter an interval of time in minutes, hours, or days.
-For Cron expression, enter an expression that tells Lambda when to stop your instances. For information on the syntax of expressions, see Schedule Expressions for Rules.
+For Cron expression, enter an expression that tells Lambda when to stop your instances. For information on the syntax of expressions, click on Learn More.
 Note: Cron expressions are evaluated in UTC. Be sure to adjust the expression for your preferred time zone.
 For 6:30pm EST enter "30 22 * * ? *" 
 6) Under Targets, choose Add target.
@@ -39,8 +39,8 @@ For 6:30pm EST enter "30 22 * * ? *"
 8) For Function, choose the function that we created to stop EC2 instance(StopEC2Instances).
 9) Choose Configure details.
 10) Under Rule definition, do the following:
-      Name: "StopEC2Instances"
-      (Optional) For Description, describe your rule. For example, "Stops EC2 instances every night at 10 PM."
+      Name: "StopEC2Instances"<br>
+      (Optional) For Description, describe your rule. For example, "Stops EC2 instances every night at 10 PM."<br>
       For State, select the Enabled check box.
 11) Choose Create rule.
 
